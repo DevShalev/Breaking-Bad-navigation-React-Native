@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import StyleMoran from '../utility/appStyle.js';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import CharDetails,{screenOptions as CharDetailsScreenOption}  from '../screens/Chars/CharDetails';
 import Chars ,{screenOptions as CharsScreenOptions} from '../screens/Chars/index';
@@ -40,12 +43,16 @@ export const QuotesStack = () =>{
 
 
 
-const AppBottomBarNavigator = createMaterialBottomTabNavigator({},{});
+const AppBottomBarNavigator = createMaterialBottomTabNavigator();
 export const AppBottomBar =()=>{
     return(
-    <AppBottomBarNavigator.Navigator options={{backGroundColor:'#095c2e'}}>
-        <AppBottomBarNavigator.Screen options={{tabBarOptions:()=>{tabBarIcon=<Ionicons name='people' />}}}  name="Characters" component={CharStack}/>
-        <AppBottomBarNavigator.Screen  name="Episode" component={EpisodeStack}/>
-        <AppBottomBarNavigator.Screen  name="Quote" component={QuotesStack} />
-    </AppBottomBarNavigator.Navigator>)
-};
+    <AppBottomBarNavigator.Navigator shifting={true} labeled={true} activeColor='#095c2e'
+    inactiveColor="#fff"
+    barStyle={{backgroundColor: 'transparent'}}>
+        <AppBottomBarNavigator.Screen  options={{tabBarIcon:({})=>{return( <Ionicons name='people' size={26} color='#095c2e'/>)}}} name="Characters" component={CharStack}/>
+        <AppBottomBarNavigator.Screen options={{tabBarIcon:({})=>{return( <MaterialCommunityIcons name='clipboard-play' size={26} color='#095c2e'/> )}}} name="Episode" component={EpisodeStack}/>
+        <AppBottomBarNavigator.Screen options={{tabBarIcon:({})=>{return( <MaterialCommunityIcons name='comment-quote' size={26} color='#095c2e'/> )}}} name="Quote" component={QuotesStack} />
+    </AppBottomBarNavigator.Navigator>
+    )};
+
+    
